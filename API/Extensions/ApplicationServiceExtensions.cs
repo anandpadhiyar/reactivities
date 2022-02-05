@@ -12,12 +12,13 @@ namespace API.Extensions
 {
     public static class ApplicationServiceExtensions
     {
-        public static WebApplicationBuilder AddApplicationServices(this WebApplicationBuilder builder) 
+        public static WebApplicationBuilder AddApplicationServices(this WebApplicationBuilder builder)
         {
             builder.Services.AddSwaggerGen();
 
             var ConnectionString = builder.Configuration.GetConnectionString("Default");
-            builder.Services.AddDbContext<DataContext>(options => {
+            builder.Services.AddDbContext<DataContext>(options =>
+            {
                 options.UseSqlServer(ConnectionString);
             });
 
