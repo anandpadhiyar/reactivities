@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Application.Activities;
 using Application.Core;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions
 {
@@ -19,7 +19,7 @@ namespace API.Extensions
             var ConnectionString = builder.Configuration.GetConnectionString("Default");
             builder.Services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlServer(ConnectionString);
+                options.UseSqlite(ConnectionString);
             });
 
             builder.Services.AddMediatR(typeof(List.Handler).Assembly);
