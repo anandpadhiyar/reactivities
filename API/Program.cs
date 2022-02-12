@@ -25,6 +25,7 @@ builder.Services.AddControllers(options =>
 {
     config.RegisterValidatorsFromAssemblyContaining<Create>();
 });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.AddApplicationServices();
@@ -52,6 +53,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    Console.WriteLine("app is in deve");
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -59,7 +61,5 @@ if (app.Environment.IsDevelopment())
 // app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 await app.RunAsync();

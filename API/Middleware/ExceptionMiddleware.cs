@@ -33,7 +33,7 @@ namespace API.Middleware
                 _logger.LogError(err, err.Message);
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
+                Console.WriteLine(context.Response.StatusCode);
                 var response = _env.IsDevelopment()
                     ? new AppException(context.Response.StatusCode, err.Message, err.StackTrace?.ToString())
                     : new AppException(context.Response.StatusCode, "Server error");
