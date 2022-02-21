@@ -7,6 +7,10 @@ using Application.Core;
 using MediatR;
 using Persistence;
 using Microsoft.EntityFrameworkCore;
+using Application.Interfaces;
+using Infrastructure.security;
+using Infrastructure.Photos;
+using Application.Photos;
 
 namespace API.Extensions
 {
@@ -24,6 +28,10 @@ namespace API.Extensions
 
             builder.Services.AddMediatR(typeof(List.Handler).Assembly);
             builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+            builder.Services.AddScoped<IUserAccessor, UserAccessor>();
+            var CloudinaryDetails = builder.Configuration.GetSection("Cloudinary");
+            builder.Services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+            builder.Services.Configure<CloudinarySettings>(CloudinaryDetails);
             return builder;
         }
     }
